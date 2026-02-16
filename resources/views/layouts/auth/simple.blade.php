@@ -11,8 +11,6 @@
         <link href="https://fonts.bunny.net/css?family=dm-sans:400,500,600,700" rel="stylesheet" />
         <style>
             .auth-page { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; }
-            .auth-card { background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); }
-            .auth-page.dark .auth-card { background: rgba(30, 41, 59, 0.5); }
             .pharma-bg { background-color: #0d9488; }
             .pharma-bg:hover { background-color: #0f766e; }
             .auth-card button[type="submit"] { background-color: #0d9488 !important; }
@@ -27,7 +25,7 @@
         </header>
         <div class="flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
             <div class="w-full max-w-md">
-                <div class="auth-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl p-8 md:p-10 dark:bg-slate-800/50">
+                <div class="auth-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl p-8 md:p-10 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-800/95">
                     <a href="{{ route('home') }}" class="flex flex-col items-center gap-3 mb-6" wire:navigate>
                         @if (!empty($appLogoUrl))
                             <img src="{{ $appLogoUrl }}" alt="{{ $appName }}" class="h-14 w-auto object-contain" />
