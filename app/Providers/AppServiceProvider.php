@@ -2,9 +2,14 @@
 
 namespace App\Providers;
 
+use App\Services\AppSettingsService;
+use App\Services\BrandingService;
+use App\Services\TenantContext;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -15,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(TenantContext::class);
+        $this->app->singleton(BrandingService::class);
     }
 
     /**
@@ -24,6 +30,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+
+        Blade::directive('tenantBranding', function () {
+            return "<?php echo '<style>' . app(\\App\\Services\\BrandingService::class)->cssVariables() . '</style>'; ?>";
+        });
+
+        View::composer('partials.head', function ($view) {
+            $settings = app(AppSettingsService::class);
+            $view->with('appFaviconUrl', $settings->getFaviconUrl());
+            $view->with('appNameFromSettings', $settings->getAppName());
+        });
     }
 
     /**

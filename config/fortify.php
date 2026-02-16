@@ -144,14 +144,15 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // Pendaftaran publik dinonaktifkan. User hanya dibuat oleh Super Admin (tenant) atau Owner (Manajemen User).
+        // Features::registration(),
         Features::resetPasswords(),
         Features::emailVerification(),
-        Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
-            // 'window' => 0
-        ]),
+        // Two-factor authentication disabled for now.
+        // Features::twoFactorAuthentication([
+        //     'confirm' => true,
+        //     'confirmPassword' => true,
+        // ]),
     ],
 
 ];
