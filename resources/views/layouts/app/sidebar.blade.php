@@ -15,6 +15,9 @@
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
+                    <flux:sidebar.item icon="book-open" :href="route('docs')" :current="request()->routeIs('docs')" wire:navigate>
+                        {{ __('Panduan Penggunaan') }}
+                    </flux:sidebar.item>
 
                     @if (auth()->user()->isTenantUser())
                         <flux:sidebar.item icon="shopping-cart" :href="route('pos.cashier')" :current="request()->routeIs('pos.*')" wire:navigate>

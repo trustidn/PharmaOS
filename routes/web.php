@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentationController;
 use App\Services\AppSettingsService;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,10 @@ Route::get('/', function (AppSettingsService $appSettings) {
 Route::livewire('dashboard', \App\Livewire\Dashboard\Overview::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('docs', DocumentationController::class)
+    ->middleware(['auth', 'verified'])
+    ->name('docs');
 
 Route::view('subscription/expired', 'subscription-expired')
     ->middleware(['auth'])
